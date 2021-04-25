@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
         unique: true
     },
     email: {
-        type: Number,
+        type: String,
         required: true,
         unique: true
     },
@@ -53,6 +53,10 @@ const UserSchema = new mongoose.Schema({
             type: String,
             unique: true
         }
+    },
+    plan:{
+        type: String,
+        default:'No Plan',
     }
 }, {
     timestamps: true

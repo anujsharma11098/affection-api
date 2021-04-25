@@ -7,18 +7,18 @@ const router = express.Router()
 
 const User = require('../models/user')
 
-router.get('/', authAdmin, async (req, res) => {
+router.get('/', async (req, res) => {
     const users = await User.find()
     res.json({ status: 200, users })
 })
 
 router.post('/register', async (req, res) => {
-    const { name, phoneNumber, IMEI, latitude, longitude, password } = req.body
+    const { name, phoneNumber, gender,  dob, email ,personal_photos,latitude, longitude,password  } = req.body
     try {
         const salt = await bcrypt.genSalt()
         const hash = await bcrypt.hash(password, salt)
         const user = await User.create({
-            name, phoneNumber, IMEI, latitude, longitude, password: hash
+            name, phoneNumber, gender,  dob, email ,personal_photos,latitude, longitude, password: hash
         })
         const accessToken = jwt.sign({
             data: JSON.stringify(user)
@@ -33,8 +33,8 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-    const { phoneNumber, password } = req.body
-    const user = await User.findOne({ phoneNumber })
+    const { email, password } = req.body
+    const user = await User.findOne({ email })
     if (!user) return res.status(404).send('User not Found')
     const result = await bcrypt.compare(password, user.password)
     if (!result) return res.status(400).send('Incorrect Password')

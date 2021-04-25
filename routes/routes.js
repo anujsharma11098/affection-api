@@ -7,6 +7,9 @@ router.get('/', (req, res) => {
 })
 
 router.use('/api/users', require('./user'))
+router.use('/api/connection', require('./connection'))
+router.use('/api/crush', require('./crush'))
+router.use('/api/match', require('./match'))
 
 
 

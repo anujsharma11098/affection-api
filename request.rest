@@ -1,0 +1,51 @@
+POST http://localhost:5000/api/users/register
+Content-Type: application/json
+
+{
+    "name": "Anuj Sharma",
+    "phoneNumber": "7726062540",
+    "email": "anujsharma@gmail.com",
+    "latitude": "23.432521",
+    "longitude": "73.432515",
+    "password": "password",
+    "gender": "Male",
+    "dob" : "01-OCT-98",
+    "personal_photos": {
+        "img1":"http://localhost:5000/"
+    }
+}
+
+###
+POST http://localhost:5000/api/connection/new_connection
+Content-Type: application/json
+
+{
+    "user_id": "607939bcd8c80d4c98157b24",
+    "friend_profile" :
+        {
+            "Mendak": {
+                "status" : "pending",
+                "superlike" : "NaN"
+            }
+        }
+    
+    
+}
+
+###
+POST http://localhost:5000/api/crush/
+Content-Type: application/json
+
+{
+    "user_id":"Anuj",
+    "crush":"Rashmika"
+}
+
+###
+POST http://localhost:5000/api/match/
+Content-Type: application/json
+
+{
+    "user_id":"Rashmika",
+    "crush":"Anuj"
+}
